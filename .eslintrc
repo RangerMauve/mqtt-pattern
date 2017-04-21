@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended"
+  ],
+  "env": {},
+  "globals": {
+    "window": true
+  },
+  "plugins": [
+    "node"
+  ],
+  "rules": {
+    "no-undef": 2,
+    "no-unused-vars": 2,
+    "strict": [2, "global"],
+    "new-cap": 0,
+    "indent": ["error", "tab", {"MemberExpression": 1, "ArrayExpression": 1, "ObjectExpression": 1 }],
+    "no-console": 0,
+    "no-invalid-this": 0,
+    "node/no-missing-require": 1,
+    "no-trailing-spaces": 2,
+    "semi": ["error", "always"],
+    "key-spacing": ["warn", { "beforeColon": false, "afterColon": true }],
+    "space-infix-ops": ["warn"],
+    "object-curly-newline": ["warn", {"minProperties": 1}],
+    "no-shadow": ["error"],
+    "no-undef-init": ["error"]
+  }
+}

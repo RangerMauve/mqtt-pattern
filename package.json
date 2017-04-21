@@ -1,0 +1,33 @@
+{
+  "name": "mqtt-pattern",
+  "version": "1.0.0",
+  "description": "Fast library for matching MQTT patterns with named wildcards",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RangerMauve/mqtt-pattern.git"
+  },
+  "keywords": [
+    "mqtt",
+    "pattern",
+    "match",
+    "topic"
+  ],
+  "author": "rangermauve",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RangerMauve/mqtt-pattern/issues"
+  },
+  "homepage": "https://github.com/RangerMauve/mqtt-pattern#readme",
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-plugin-node": "^4.2.2",
+    "tape": "^4.6.3"
+  },
+  "dependencies": {
+    "mqtt-match": "^1.0.2"
+  }
+}
