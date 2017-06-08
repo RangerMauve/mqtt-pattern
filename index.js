@@ -1,5 +1,4 @@
 "use strict";
-
 var SEPARATOR = "/";
 var SINGLE = "+";
 var ALL = "#";
@@ -17,6 +16,7 @@ function exec(pattern, topic) {
 function matches(pattern, topic) {
 	var patternSegments = pattern.split(SEPARATOR);
 	var topicSegments = topic.split(SEPARATOR);
+
 	var patternLength = patternSegments.length;
 	var topicLength = topicSegments.length;
 	var lastIndex = patternLength - 1;
@@ -26,7 +26,7 @@ function matches(pattern, topic) {
 		var patternChar = currentPattern[0];
 		var currentTopic = topicSegments[i];
 
-		if(!currentTopic && currentPattern !== "#") return false;
+		if(!currentTopic) return false;
 
 		// Only allow # at end
 		if(patternChar === ALL)
