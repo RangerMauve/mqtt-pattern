@@ -26,7 +26,7 @@ function matches(pattern, topic) {
 		var patternChar = currentPattern[0];
 		var currentTopic = topicSegments[i];
 
-		if(!currentTopic) return false;
+		if(!currentTopic && currentPattern !== "#") return false;
 
 		// Only allow # at end
 		if(patternChar === ALL)
