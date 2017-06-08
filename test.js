@@ -1,4 +1,5 @@
 "use strict";
+
 var test = require("tape");
 
 var MQTTPattern = require("./");
@@ -21,6 +22,11 @@ test("matches() supports patterns with # at the beginning", function (t) {
 test("matches() supports patterns with # at the end", function (t) {
 	t.plan(1);
 	t.ok(MQTTPattern.matches("foo/#", "foo/bar/baz"), "Matched topic");
+});
+
+test("matches() supports patterns with # at the end and topic has no children", function (t) {
+	t.plan(1);
+	t.ok(MQTTPattern.matches("foo/bar/#", "foo/bar"), "Matched childless topic");
 });
 
 test("matches() doesn't support # wildcards with more after them", function (t) {
