@@ -105,3 +105,47 @@ test("exec() returns params if they can be parsed", function(t){
 		world: ["baz"]
 	}, "Extracted params");
 });
+
+test("fill() fills in pattern with both types of wildcards", function(t){
+	t.plan(1);
+	t.deepEqual(MQTTPattern.fill("foo/+hello/#world", {
+		hello: "Hello",
+		world: ["the", "world", "wow"],
+	}), "foo/Hello/the/world/wow", "Filled in params");
+});
+
+test("fill() fills missing + params with undefined", function(t){
+	t.plan(1);
+	t.deepEqual(
+		MQTTPattern.fill("foo/+hello", {}),
+		"foo/undefined",
+		"Filled in params"
+	);
+});
+
+test("fill() ignores empty # params", function(t){
+	t.plan(1);
+	t.deepEqual(
+		MQTTPattern.fill("foo/#hello", {}),
+		"foo",
+		"Filled in params"
+	);
+});
+
+test("fill() ignores non-named # params", function (t) {
+	t.plan(1);
+	t.deepEqual(
+		MQTTPattern.fill("foo/#", {}),
+		"foo",
+		"Filled in params"
+	);
+});
+
+test("fill() uses `undefined` for non-named + params", function(t){
+	t.plan(1);
+	t.deepEqual(
+		MQTTPattern.fill("foo/+", {}),
+		"foo/undefined",
+		"Filled in params"
+	);
+});

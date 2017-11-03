@@ -21,6 +21,10 @@ var params = MQTTPattern.exec(pattern, topic);
 	data: ["rate", "bmp"]
 }
 
+var filled = MQTTPattern.fill(pattern, params);
+// filled will be
+"device/fitbit/undefined/rate/bmp"
+
 ```
 
 ## Installing
@@ -45,6 +49,9 @@ Traverses the `pattern` and attempts to fetch parameters from the `topic`.
 Useful if you know in advance that your `topic` will be valid and want to extract data.
 If the `topic` doesn't match, or the `pattern` doesn't contain named wildcards, returns an empty object.
 Do not use this for validation.
+
+### `fill(pattern : String, params: Object) : String`
+Reverse of `extract`, traverse the `pattern` and fill in params with keys in an object. Missing keys for `+` params are set to `undefined`. Missing keys for `#` params yeid empty strings.
 
 ## How params work
 

@@ -7,6 +7,7 @@ module.exports = {
 	matches: matches,
 	extract: extract,
 	exec: exec,
+	fill: fill,
 };
 
 function exec(pattern, topic) {
@@ -36,6 +37,34 @@ function matches(pattern, topic) {
 	}
 
 	return patternLength === topicLength;
+}
+
+function fill(pattern, params){
+	var patternSegments = pattern.split(SEPARATOR);
+	var patternLength = patternSegments.length;
+
+	var result = [];
+
+	for (var i = 0; i < patternLength; i++) {
+		var currentPattern = patternSegments[i];
+		var patternChar = currentPattern[0];
+		var patternParam = currentPattern.slice(1);
+		var paramValue = params[patternParam];
+
+		if(patternChar === ALL){
+			// Check that it isn't undefined
+			if(paramValue !== void 0)
+				result.push([].concat(paramValue).join(SEPARATOR)); // Ensure it's an array
+
+			// Since # wildcards are always at the end, break out of the loop
+			break;
+		} else if (patternChar === SINGLE)
+			// Coerce param into a string, missing params will be undefined
+			result.push("" + paramValue);
+		else result.push(currentPattern);
+	}
+
+	return result.join(SEPARATOR);
 }
 
 
