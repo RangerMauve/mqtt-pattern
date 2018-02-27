@@ -18,12 +18,6 @@ function matches(pattern, topic) {
 	var patternSegments = pattern.split(SEPARATOR);
 	var topicSegments = topic.split(SEPARATOR);
 
-	if (!patternSegments[0])
-		patternSegments = patternSegments.slice(1);
-
-	if (!topicSegments[0])
-		topicSegments = topicSegments.slice(1);
-
 	var patternLength = patternSegments.length;
 	var topicLength = topicSegments.length;
 	var lastIndex = patternLength - 1;
@@ -32,6 +26,9 @@ function matches(pattern, topic) {
 		var currentPattern = patternSegments[i];
 		var patternChar = currentPattern[0];
 		var currentTopic = topicSegments[i];
+
+		if(!currentTopic && !currentPattern)
+			return true;
 
 		if(!currentTopic && currentPattern !== ALL) return false;
 

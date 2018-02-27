@@ -59,10 +59,9 @@ test("matches() supports named wildcards", function (t) {
 	t.ok(MQTTPattern.matches("foo/+something/#else", "foo/bar/baz"), "Matched topic");
 });
 
-test("matches() ignores leading '/' characters in topics and wildcards", function (t) {
-	t.plan(2);
-	t.ok(MQTTPattern.matches("/foo/bar", "foo/bar"), "Matched pattern with leading slash");
-	t.ok(MQTTPattern.matches("foo/bar", "/foo/bar"), "Matched topic with leading slash");
+test("matches() supports leading slashes", function (t){
+	t.plan(1);
+	t.ok(MQTTPattern.matches("/foo/bar", "/foo/bar"), "Matched topic");
 });
 
 test("extract() returns empty object of there's nothing to extract", function (t) {
