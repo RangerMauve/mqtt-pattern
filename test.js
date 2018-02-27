@@ -60,8 +60,9 @@ test("matches() supports named wildcards", function (t) {
 });
 
 test("matches() supports leading slashes", function (t){
-	t.plan(1);
+	t.plan(2);
 	t.ok(MQTTPattern.matches("/foo/bar", "/foo/bar"), "Matched topic");
+	t.notok(MQTTPattern.matches("/foo/bar", "/bar/foo"), "Didn't match invalid topic");
 });
 
 test("extract() returns empty object of there's nothing to extract", function (t) {

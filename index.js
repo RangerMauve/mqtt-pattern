@@ -28,7 +28,7 @@ function matches(pattern, topic) {
 		var currentTopic = topicSegments[i];
 
 		if(!currentTopic && !currentPattern)
-			return true;
+			continue;
 
 		if(!currentTopic && currentPattern !== ALL) return false;
 
