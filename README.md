@@ -56,6 +56,9 @@ Do not use this for validation.
 ### `fill(pattern : String, params: Object) : String`
 Reverse of `extract`, traverse the `pattern` and fill in params with keys in an object. Missing keys for `+` params are set to `undefined`. Missing keys for `#` params yeid empty strings.
 
+### `clean(pattern : String) : String`
+Removes the parameter names from a pattern.
+
 ## How params work
 
 MQTT defines two types of "wildcards", one for matching a single section of the path (`+`), and one for zero or more sections of the path (`#`).
