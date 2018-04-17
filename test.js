@@ -155,3 +155,13 @@ test("fill() uses `undefined` for non-named + params", function(t){
 		"Filled in params"
 	);
 });
+
+test("clean() removes parameter names", function(t){
+	t.plan(1);
+	t.equal(MQTTPattern.clean("hello/+param1/world/#param2"), "hello/+/world/#", "Got hello/+/world/#");
+});
+
+test("clean() works when there aren't any parameter names", function(t){
+	t.plan(1);
+	t.equal(MQTTPattern.clean("hello/+/world/#"), "hello/+/world/#", "Got hello/+/world/#");
+});
