@@ -25,6 +25,9 @@ var filled = MQTTPattern.fill(pattern, params);
 // filled will be
 "device/fitbit/undefined/rate/bmp"
 
+MQTTPattern.clean("hello/+param1/world/#param2");
+// hello/+/world/#
+
 ```
 
 ## Installing

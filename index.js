@@ -8,6 +8,7 @@ module.exports = {
 	extract: extract,
 	exec: exec,
 	fill: fill,
+	clean: clean
 };
 
 function exec(pattern, topic) {
@@ -94,4 +95,27 @@ function extract(pattern, topic) {
 	}
 
 	return params;
+}
+
+
+function clean(pattern) {
+	var patternSegments = pattern.split(SEPARATOR);
+	var patternLength = patternSegments.length;
+
+	var cleanedSegments = [];
+
+	for(var i = 0; i < patternLength; i++){
+		var currentPattern = patternSegments[i];
+		var patternChar = currentPattern[0];
+
+		if(patternChar === ALL){
+			cleanedSegments.push(ALL);
+		} else if(patternChar === SINGLE){
+			cleanedSegments.push(SINGLE);
+		} else {
+			cleanedSegments.push(currentPattern);
+		}
+	}
+
+	return cleanedSegments.join('/');
 }
