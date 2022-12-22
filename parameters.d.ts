@@ -47,26 +47,44 @@ export type CleanTopic<Topic> = Topic extends `${infer PartA}/${infer PartB}`
 //#endregion
 
 //#region Topic Filling
-type JoinPath<Parts> = Parts extends [infer v, ...infer rest]
+type JoinPath<Parts extends string[]> = Parts extends [infer v, ...infer rest]
   ? rest extends []
     ? v
-    : `${v}/${JoinPath<rest>}`
+    : v extends string
+    ? rest extends string[]
+      ? `${v}/${JoinPath<rest>}`
+      : ""
+    : ""
   : "";
 
 type FillParam<
   Section extends string,
-  Parameters extends MqttParameters<Section>
+  Parameters extends MqttParameters<FullPattern>,
+  FullPattern extends string = Section
 > = Section extends `+${infer PName}`
-  ? Parameters[PName]
+  ? PName extends keyof Parameters
+    ? Parameters[PName] extends string
+      ? Parameters[PName]
+      : unknown
+    : unknown
   : Section extends `#${infer PName}`
-  ? JoinPath<Parameters[PName]>
+  ? PName extends keyof Parameters
+    ? Parameters[PName] extends string[]
+      ? JoinPath<Parameters[PName]>
+      : unknown
+    : unknown
   : Section;
 
 export type FillTopic<
   Pattern extends string,
-  Parameters extends MqttParameters<Pattern>
+  Parameters extends MqttParameters<FullPattern>,
+  FullPattern extends string = Pattern
 > = Pattern extends `${infer Left}/${infer Right}`
-  ? `${FillParam<Left, Parameters>}/${FillTopic<Right, Parameters>}`
-  : FillParam<Pattern, Parameters>;
+  ? `${FillParam<Left, Parameters, FullPattern>}/${FillTopic<
+      Right,
+      Parameters,
+      FullPattern
+    >}`
+  : FillParam<Pattern, Parameters, FullPattern>;
 
 //#endregion
