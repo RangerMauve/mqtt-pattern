@@ -3,6 +3,7 @@
   "version": "1.2.0",
   "description": "Fast library for matching MQTT patterns with named wildcards",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "node test"
   },
