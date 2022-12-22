@@ -25,7 +25,8 @@
   "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-plugin-node": "^4.2.2",
-    "tape": "^4.6.3"
+    "tape": "^4.6.3",
+    "ts-toolbelt": "^9.6.0"
   },
   "dependencies": {
     "mqtt-match": "^1.0.2"
