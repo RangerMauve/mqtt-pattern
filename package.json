@@ -1,6 +1,6 @@
 {
   "name": "mqtt-pattern",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Fast library for matching MQTT patterns with named wildcards",
   "main": "index.js",
   "types": "index.d.ts",
