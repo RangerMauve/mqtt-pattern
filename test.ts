@@ -1,4 +1,4 @@
-import { clean, exec, extract, fill, matches } from "./index";
+import { clean, exec, extract, fill, matches, MqttParameters } from "./index";
 import { Test } from "ts-toolbelt";
 import test from "node:test";
 // Type Testing
@@ -9,6 +9,7 @@ const { check, checks } = Test;
 const execv = exec("foo/bar/+baz", "foo/bar/test");
 checks([
   check<typeof execv, { baz: string } | null, Test.Pass>(),
+  check<typeof execv, MqttParameters<"foo/bar/+baz"> | null, Test.Pass>(),
   check<typeof execv, { baz: string[] } | null, Test.Fail>(),
 ]);
 

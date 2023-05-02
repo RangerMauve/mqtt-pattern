@@ -1,6 +1,8 @@
 import type { MqttParameters, FillTopic, CleanTopic } from "./parameters";
 import type { F } from "ts-toolbelt";
 
+export type { MqttParameters } from './parameters'
+
 /**
  * Extract parameters from a topic based on the pattern provided
  * @param pattern Pattern to match against
