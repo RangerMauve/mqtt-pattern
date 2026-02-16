@@ -65,14 +65,14 @@ type FillParam<
   ? PName extends keyof Parameters
     ? Parameters[PName] extends string
       ? Parameters[PName]
-      : unknown
-    : unknown
+      : never
+    : never
   : Section extends `#${infer PName}`
   ? PName extends keyof Parameters
     ? Parameters[PName] extends string[]
       ? JoinPath<Parameters[PName]>
-      : unknown
-    : unknown
+      : never
+    : never
   : Section;
 
 export type FillTopic<
